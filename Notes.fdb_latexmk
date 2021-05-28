@@ -1,0 +1,20 @@
+# Fdb version 3
+["pdflatex"] 1622137177 "Notes.tex" "Notes.pdf" "Notes" 1622137177
+  "Notes.aux" 1622137177 127 77fd99b226ebee87dbf11ea1a8a600ae "pdflatex"
+  "Notes.tex" 1622137174 93 ab44a3c0ba9cf94dda3ecc1f02570fc2 ""
+  "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1622125719 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1622125353 1324 c910af8c371558dc20f2d7822f66fe64 ""
+  "c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1622125353 1288 655e228510b4c2a1abe905c368440826 ""
+  "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1622125086 32080 340ef9bf63678554ee606688e7b5339d ""
+  "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1622125086 35752 024fb6c41858982481f6968b5fc26508 ""
+  "c:/texlive/2021/texmf-dist/tex/latex/base/article.cls" 1622126015 20145 aad8c3dd3bc36e260347b84002182bc2 ""
+  "c:/texlive/2021/texmf-dist/tex/latex/base/size10.clo" 1622126015 8449 a72d5d4e612221b46000c3d71724e0ef ""
+  "c:/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1622126002 27164 3d5f7887a89df4eb2f6e86ba26ef3254 ""
+  "c:/texlive/2021/texmf-dist/web2c/texmf.cnf" 1622125991 39972 3d6bb4d9d719e93193fa020b58adf5d4 ""
+  "c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1622127347 5211361 49fad849de0db61b73297532470512eb ""
+  "c:/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1622127488 2724559 9f91299e925066be684294a8e576ca59 ""
+  "c:/texlive/2021/texmf.cnf" 1622127312 713 e69b156964470283e0530f5060668171 ""
+  (generated)
+  "Notes.pdf"
+  "Notes.log"
+  "Notes.aux"
