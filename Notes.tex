@@ -1,14 +1,27 @@
 \documentclass{article}
 \usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
 %Week 1
+
+
 \begin{document}
+\section{Communication Theory}
+
+Communication theory is a field of information theory and mathematics that studies the technical process of information.
+Communication theory consists of:
+\begin{itemize}
+    \item Analyzing real world communication systems using structured thinking or mathematics.
+    \item Synthesizing real world communication systems from mathematics.
+\end{itemize}
 
 \section{Signals}
 Signals are defined to be a function that conveys information about a phenomenon.
 They can also be said to be a medium which carry information relevant to a reciever.
 
-Electromagnetic wave, voltage or current carrying information are some examples of signals.
+Electromagnetic wave, voltage or current, digital signals carrying information are some examples of signals.
 
 \subsection{Are there any non-time based signals?}
 \begin{itemize}
@@ -27,6 +40,48 @@ Communication is the process of exchanging information. Transmission, reception 
 Channel: Separates the source and reciever and is not directly under our control.
 This leads to some disturbances or imperfections in the channel, which is called noise.
 
+\subsection{Transmitter}
+The first step in sending a message is to convert it into electronic form suitable for transmission. The transmitter consists of various components designed to convert the electrical signal to a signal for sending it through the medium.
+
+$$\fbox{Source} \xrightarrow{info.} \fbox{Channel Coding/Amplification/Modulation/Antenna} \rightarrow \fbox {Channel} $$
+
+The transmitter is also called TX or TRX.
+
+\subsection{Reciever}
+
+\tikzstyle{int}=[draw, minimum size=2em]
+\tikzstyle{init} = [pin edge={to-,thin,black}]
+\begin{tikzpicture}[node distance=6cm,auto,>=latex']
+    \node [int] (a) {Detect/estimate signal};
+    \node (b) [left of=a,node distance=5cm, coordinate] {a};
+    \node [int] (c) [right of=a] {Extract info.};
+    \node [coordinate] (end) [right of=c, node distance=2cm]{};
+    \path[->] (b) edge node {Noisy TX signal} (a);
+    \path[->] (a) edge node {Channel decoding} (c);
+    \draw[->] (c) edge node {} (end) ;
+\end{tikzpicture}
+\newline
+A receiver is a collection of electronic components and circuits that accepts the transmitted message from the channel and converts it back to an understandable form.
+The dectection and estimation step is called `demodulation'.
+
+Channel coding and decoding is mainly used in digital communication systems. The reciever is called RX.
+
+\subsection{Features of a good communication system}
+\begin{itemize}
+    \item Low degradation in quality of original signal, called high fidelity.
+    \item Quick reception of information, called high rate communication.
+        (in digital comms., this happens via intelligent modulation, power control)
+    \item Time delay between transmission and communication should be small, called latency. (eg: high latency required in video streams but not for downloads)
+\end{itemize}
+
+\subsection{Modes of Communication}
+\begin{enumerate}
+    \item Point-to-point communication, in which the communication process takes place over a link between a single transmitter and a receiver. eg: Wired phone call.
+    \item Broadcasting, which involves the use of a single  transmitter and multiple receivers. eg: Radio/TV broadcast, wi-fi, wireless cellular downlink
+    \begin{itemize}
+        \item Multiple access channel, consists of multiple transmitters and a single reciever. eg: Cellular uplink.
+    \end{itemize}
+\end{enumerate}
 
 
 \end{document}
