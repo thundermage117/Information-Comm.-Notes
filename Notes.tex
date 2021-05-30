@@ -83,5 +83,46 @@ Channel coding and decoding is mainly used in digital communication systems. The
     \end{itemize}
 \end{enumerate}
 
+\section{Information}
+
+\subsection{What is information?}
+    Information is often thought of as the resolution of uncertainity. It can also mean the arrangement of particles.
+
+    Say that $X$ is a random quantity representing the signal of interest (at some point in time or space).
+
+$X \in \{0,1\}$ and it can take value $0$ with a probability of $p$ and value $1$ with probability $1-p$. This statement is a general abstraction of many different real-world scenarios.
+$X$ is called a random variable, while 0 and 1 together form the sample space.
+
+How do we find the information-content (or ``surprise'', ``average uncertainty'') in X?
+
+The information content(surprise) is inversely proportional to the probability that the event occurs. i.e.
+$$ Info.\; content\; in \;event \;``X=0" \propto \frac{1}{P(X=0)}$$
+
+Our goal is to assign a function to the above `information content'.
+
+Suppose $X_1\, \&\, X_2$ are independant random variables and $x_1, x_2$ are some values. Then
+$$ P(X_1=x_1,X_2=x_2)=P(X_1=x_1)\times P(X_2=x_2)$$
+
+We expect the joint information content in $X_1\, \&\, X_2$ to be the sum of the individual information contents. (as product is being converted to a sum, the log function is a good choice)
+
+The information-content in the event $X=x$ is $\log( {\frac{1}{P(X=x)})}$.
+
+\subsection{Entropy}
+
+The average (or expected) information content for a random variable $X$, with possible outcomes $x_1, \cdots, x_n$, which occur with probability $P(x_1),\cdots, P(x_n)$ is defined as:
+
+$$ H(X) :=- \sum_{i=1}^{n} P(x_i) \log P(x_i)$$
+
+$H(X)$ is called the entropy of X. Entropy in information theory is directly analogous to the entropy in statistical thermodynamics.
+
+\subsubsection{Lemma}
+Suppose $x_1 \in \mathcal{X}_1\, \&\; x_2 \in \mathcal{X}_2$ are \textbf{independant} random variables. Then,
+$$ H(x_1,\;x_2)=H(x_1)+H(x_2)$$
+
+Proof: %incomplete
+
+
+
+
 
 \end{document}
