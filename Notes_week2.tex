@@ -1,12 +1,83 @@
 \documentclass{article}
-
+ \usepackage{amsmath}
 
 \begin{document}
 \begin{center}
 \textbf{\huge{Week 2}}
 \end{center}
-Suppose $x_1 \in \mathcal{X}_1\, \&\; x_2 \in \mathcal{X}_2$ are \textbf{independant} random variables. Then,
-$$ H(x_1,\;x_2)=H(x_1)+H(x_2)$$
+
+\section{Independent random variables}
+Definition: Two random variables $X_1, X_2 $ are said to be independent if,
+$$ P(X_1=x_1,X_2=x_2)= P(X_1=x_1)P(X_2=x_2) \quad \forall \; x_1 \in \mathcal{X}_1\, \&\; x_2 \in \mathcal{X}_2$$
+
+\fbox{$ P(X_1=x_1,X_2=x_2)$ means that $X_1=x_1$ \textbf{AND} $X_2=x_2$ occur.}
+
+\subsection{Claim}
+$$ \sum_{x_2 \in \mathcal{X}_2} P(X_1=x_1,X_2=x_2)=P(X_1=x_1)$$
+
+\textbf{Proof}: Suppose $A $ \& $B$ are disjoint/mutually exclusive. Then,
+$$ P(A \cap B)=0 \quad \& \quad P(A \cup B)=P(A)+P(B)$$
+
+Now the events $(X_1=x_1)\cap (X_2=x_2)$ are disjoint for different values of $x_2\in \mathcal{X}_2$.(if $x_2 \neq x_2' \;\forall\; x_2\in \mathcal{X}_2$)
+
+Thus,
+
+    \begin{align*}
+        \sum_{x_2 \in \mathcal{X}_2} P(X_1=x_1,X_2=x_2)& = \sum_{x_2 \in \mathcal{X}_2} P\bigl( (X_1=x_1)\cap (X_2=x_2) \bigr) \\
+        &=P\left( \bigcup_{x_2 \in \mathcal{X}_2} (X_1=x_1)\cap (X_2=x_2) \right)
+    \end{align*}
+Now,
+    \begin{align*}
+        \bigcup_{x_2 \in \mathcal{X}_2} \left[(X_1=x_1)\cap (X_2=x_2) \right]
+        &= (X_1=x_1)\bigcap \left[ \bigcup_{x_2 \in \mathcal{X}_2} (X_2=x_2) \right] \\
+        &= (X_1=x_1)\bigcap \left[ x_2 \in \mathcal{X}_2 \right]
+    \end{align*}
+As $[ x_2 \in \mathcal{X}_2] $ forms the entire sample space,
+\begin{align*}
+    P\left( \bigcup_{x_2 \in \mathcal{X}_2} (X_1=x_1)\cap (X_2=x_2) \right) &= P\left( (X_1=x_1)\bigcap \left[ x_2 \in \mathcal{X}_2 \right] \right) \\
+    &= P\left( (X_1=x_1) \bigcap \Omega \right) \\
+    &= P(X_1=x_1)
+\end{align*}
+
+
+\section{Lemma}
+
+Suppose $X_1 \in \mathcal{X}_1\, \&\; X_2 \in \mathcal{X}_2$ are \textbf{independant} random variables. Then,
+$$ H(X_1,\;X_2)=H(X_1)+H(X_2)$$
+
+Proof:
+\begin{gather*}
+    \sum_{ \substack{x_1 \in \mathcal{X}_1 \\ x_2 \in \mathcal{X}_2}} P(X_1=x_1,X_2=x_2) \log \left( \frac{1}{P(X_1=x_1,X_2=x_2)} \right) \\
+    = \sum_{x_1 \in \mathcal{X}_1 }\sum_{x_2 \in \mathcal{X}_2} P(X_1=x_1,X_2=x_2) \left[  \log \frac{1}{P(X_1=x_1)} + \log \frac{1}{P(X_2=x_2)}\right] \\
+    = \sum_{x_1 \in \mathcal{X}_1 } \log \frac{1}{P(X_1=x_1)} \left( \sum_{x_2 \in \mathcal{X}_2} P(X_1=x_1,X_2=x_2)\right) \\
+    + \sum_{x_2 \in \mathcal{X}_2 } \log \frac{1}{P(X_2=x_2)} \left( \sum_{x_1 \in \mathcal{X}_1} P(X_1=x_1,X_2=x_2)\right)
+\end{gather*}
+
+From the previous claim,
+\begin{gather*}
+    H(X_1,X_2)= \sum_{x_1 \in \mathcal{X}_1}P(X_1=x_1) \log \frac{1}{P(X_1=x_1)} \\
+    + \sum_{x_2 \in \mathcal{X}_2}P(X_2=x_2) \log \frac{1}{P(X_2=x_2)} \\
+    =H(X_1)+H(X_2)
+\end{gather*}
+
+\subsection{Conditional probability distribution}
+
+What if $X_1$ \& $X_2$ are not independent? Then we would use conditional probability distribution. i.e.
+$$ P(X_2=x_2/X_1=x_1):= \frac{P(X_2=x_2, X_1=x_1)}{P(X_1=x_1)}, \quad P(X_1=x_1) \neq 0 $$
+
+This definition for conditional probability satisfies the probability axioms and hence it is a valid probability measure.
+
+\subsection{Conditional entropy}
+Definition:
+$$ H(X_1/X_2):= \sum_{x_1 \in \mathcal{X}_1} P(X_2=x_2) H(X_1/X_2=x_2)$$
+where,
+$$ H(X_2/X_1=x_1):= \sum_{x_2 \in \mathcal{X}_2}P(X_2=x_2/X_1=x_1) \log \frac{1}{P(X_2=x_2/X_1=x_1)}$$
+
+\subsection{Chain Rule}
+$$ H(X_1,X_2)=H(X_1)+H(X_2/X_1)$$
+
+
+
 
 
 
