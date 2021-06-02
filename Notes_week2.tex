@@ -69,12 +69,28 @@ This definition for conditional probability satisfies the probability axioms and
 
 \subsection{Conditional entropy}
 Definition:
-$$ H(X_1/X_2):= \sum_{x_1 \in \mathcal{X}_1} P(X_2=x_2) H(X_1/X_2=x_2)$$
+$$ H(X_2/X_1):= \sum_{x_1 \in \mathcal{X}_1} P(X_2=x_2) H(X_2/X_1=x_1)$$
 where,
 $$ H(X_2/X_1=x_1):= \sum_{x_2 \in \mathcal{X}_2}P(X_2=x_2/X_1=x_1) \log \frac{1}{P(X_2=x_2/X_1=x_1)}$$
 
+\subsubsection{Support of a function}
+
+When $P(X=x)=0$, it is not considered in calculating the entropy.
+$$ H(X)=-\sum_{ \{ x \in \mathcal{X} : P(X=x) \neq 0\} } P(X=x)log(P(X=x))$$
+
+Suppose that f : X → R is a real-valued function whose domain is an arbitrary set X. The set-theoretic support of f, written supp(f), is the set of points in X where f is non-zero:
+$$ supp(X)=\{ x \in X : f(x) \neq 0 \}$$
+
+Note: $P(X=x)$ can be denoted as $P_X(x)$ or $P(x)$. Hence:
+$$ H(X)= -\sum_{x \in supp(P)} P(x)log(P(x))$$
+
 \subsection{Chain Rule}
 $$ H(X_1,X_2)=H(X_1)+H(X_2/X_1)$$
+$$\quad = H(X_2)+ H(H_1/X_2)$$
+
+Proof: 
+
+
 
 
 
