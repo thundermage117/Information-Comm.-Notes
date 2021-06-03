@@ -1,5 +1,7 @@
 \documentclass{article}
- \usepackage{amsmath}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
 
 \begin{document}
 \begin{center}
@@ -40,7 +42,7 @@ As $[ x_2 \in \mathcal{X}_2] $ forms the entire sample space,
 \end{align*}
 
 
-\section{Lemma}
+\section{Entropy}
 
 Suppose $X_1 \in \mathcal{X}_1\, \&\; X_2 \in \mathcal{X}_2$ are \textbf{independant} random variables. Then,
 $$ H(X_1,\;X_2)=H(X_1)+H(X_2)$$
@@ -81,17 +83,68 @@ $$ H(X)=-\sum_{ \{ x \in \mathcal{X} : P(X=x) \neq 0\} } P(X=x)log(P(X=x))$$
 Suppose that f : X → R is a real-valued function whose domain is an arbitrary set X. The set-theoretic support of f, written supp(f), is the set of points in X where f is non-zero:
 $$ supp(X)=\{ x \in X : f(x) \neq 0 \}$$
 
-Note: $P(X=x)$ can be denoted as $P_X(x)$ or $P(x)$. Hence:
-$$ H(X)= -\sum_{x \in supp(P)} P(x)log(P(x))$$
+Note: $P(X=x)$ can be denoted as $P_X(x)$ or $P(x)$.
+\subsection{Important Results}
+     $$ H(X)= -\sum_{x \in supp(P)} P(x)log(P(x))$$
+     $$ H(X/Y)= \sum_{y \in supp(P_Y)} P_Y(y)H(X/Y=y)$$
+     $$ H(X/Y=y)= -\sum_{x \in supp(P_{X/Y})} P_{X/Y}(x/y)log(P_{X/Y}(x/y))$$
 
 \subsection{Chain Rule}
-$$ H(X_1,X_2)=H(X_1)+H(X_2/X_1)$$
-$$\quad = H(X_2)+ H(H_1/X_2)$$
+$$ H(X,Y)=H(X)+H(Y/X)=H(Y)+H(X/Y)$$
 
-Proof: 
+Proof:
+\begin{multline*}
+     H(X)+H(Y/X)= -\sum_{x \in supp(P)} P(x)log(P(x)) \\
+      + \sum_{x \in supp(P_X)} P(x)\left(\sum_{y \in supp(P_{Y})} P(y/x)log\left(\frac{1}{P(y/x)}\right)\right)
+\end{multline*}
+
+\begin{multline*}
+    \qquad \qquad \qquad \quad= -\sum_{x \in supp(P_X)}\left(\sum_{y \in supp(P_Y)} P(x,y)\right)log(P(x)) \\
+    + \sum_{x \in supp(P_X)} \left(\sum_{y \in supp(P_{Y})} P(x,y) \right) log\left(\frac{1}{P(y/x)}\right)
+\end{multline*}
 
 
+$$ \qquad \qquad =\sum_{x \in supp(P_X)} \sum_{y \in supp(P_{Y})} P(x,y)\left(\log \frac{1}{P(x)P(y/x)} \right)  $$
 
+$$ = - \sum_x \sum_y P(x,y)\log P(x,y)=H(x,y)$$
+
+\subsection{Properties of entropy}
+
+Upper and lower bound of entropy:
+$$ 0 \leq H(X) \leq |log \mathcal X|$$
+
+Proof:
+
+$ H(X)= \sum_x P(x)log \frac{1}{P(x)} \rightarrow $ always positive as $P(x)>0$ $\forall x \in supp(P_X)$.
+
+$H(X)= 0$ when $|supp(P_X)|=1$.
+
+\subsubsection{Jensen's inequality (Concave/convex functions)}
+
+\includegraphics[width=\textwidth]{graph.png}
+$x_1 < x_3 <x_2 $ such that $x_3= tx_1+(1-t)x_2$
+
+If $f(x_3) \geq tf(x_1)+(1-t)f(x_2) \rightarrow $ Concave function.
+
+If $f(tx_1+(1-t)x_2) \leq tf(x_1)+(1-t)f(x_2) \rightarrow $ Convex function.
+
+Hence, the above graph is a convex function.
+
+We shall use the concavity property of the log function to obtain the proof for $ H(X) \leq |log \mathcal X| $.
+
+Proof:
+$$ H(X)= \sum_{x \in supp(P)} P(x)log\frac{1}{P(x)}$$
+
+Let us assume $\lambda_x$ is another notation for $P(x)$.
+
+$$H(X)= \sum_{x \in supp(P)} \lambda_x log\frac{1}{P(x)}$$
+
+This is a convex combination of $log\frac{1}{P(x)}:x \in supp(P_X)$ as $\sum_{x}P(x)=1$.
+
+$$ H(X) \leq \log \left(\sum_{x \in supp(P_X)}\lambda_x \frac{1}{P(x)} \right) \leq \log |supp(P_x)|$$
+$$ \Rightarrow H(X) \leq |\mathcal X |$$
+
+$H(X)$ is $ log|\mathcal X| $ only when.%incomplete
 
 
 
