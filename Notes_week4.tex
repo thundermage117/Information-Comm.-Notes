@@ -8,6 +8,12 @@
 \textbf{\huge{Week 4}}
 \end{center}
 
+\section{Definitions}
+\begin{itemize}
+    \item Codeword: String resulting from some particular input/sequence.
+    \item Code: Set of all codewords.
+\end{itemize}
+
 \section{Significance of entropy and other terms}
 
 We will be dealing with fixed length source code.
@@ -44,7 +50,9 @@ We will be dealing with fixed length source code.
     $$C_{s}':\{ a,b\}^3 \to \{ 0,1\} $$
     Length is $1$, while normalised length is $\frac{1}{3}$. This would be a good code if, $(a,a,a)$ has a very high probability and the 7 other vectors have small probability.
 
-    \item Suppose we are allowed to combine multiple symbols and encode them together into some fixed length binary string, then this gives a more `efficient' source code i.e. smaller normalised length.
+    \item Fixed length source sequences to fixed length codewords.
+
+    Suppose we are allowed to combine multiple symbols and encode them together into some fixed length binary string, then this gives a more `efficient' source code i.e. smaller normalised length.
 
     We shall impose some requirements:
     \begin{itemize}
@@ -63,10 +71,37 @@ We will be dealing with fixed length source code.
 
     Number of $b's$: $n(1-p)$.
 
-    Number of sequences with such distribution of $a's$ and $b's$: $\Comb{n}{np}$ = $n \choose np$
+    Number of sequences with such distribution of $a's$ and $b's$: $\Comb{n}{np}$ = ${n \choose np}$
 
-    Now, for an efficient source code, we will encode only these $n \choose np$ sequences with unique codewords. And for all other sequences we use a single codeword. 
+    Now, for an efficient source code, we will encode only these $n \choose np$ sequences with unique codewords. And for all other sequences we use a single codeword.
+%16/6
+    We assign each typical sequence a unique codeword of length $L$. And assign the same $L$ length codeword to all atypical sequences, which is different from the other codewords used. Now,
+    $$\text{Typical }\to {n \choose np} \qquad\qquad \text{Atypical }\to 2^n- {n \choose np} $$
+    $$ \Rightarrow L \text{ is atleast}=\qquad \log_2 {n \choose np} +1 $$
+    \begin{align*}
+        \log_2 {n \choose np} &= \log_2 \left(\frac{n!}{(np)!(n-np)!} \right) \\
+        (n! &\approx n(n-1)\cdots \approx n^n-\text{some poly. with deg }< n) \\
+        &= \log_2 n! - \log_2 np! - \log_2{(n-np)!} \\
+        &\approx n\log_2 n - np \log_2 np - n(1-p)\log_2{(n(1-p))}-O(n) \\
+        &\approx n\log_2 n - np \log_2 np - np \log_2 n - n(1-p)log_2 n - n(1-p)log_2 (1-p) \\
+        &=n \left[p\log_2 \frac{1}{p}+ (1-p)\log_2 \frac{1}{1-p} \right]\\
+        &\approx nH(X), \text{ where X is the source random variable.}
+    \end{align*}
 
+    Note: O(n) is \textbf{much} smaller than the other terms.
+
+    $\Rightarrow$ It is sufficient to have length of codewords = $nH(X)+1$.
+
+    Length of codeword per source symbol $=H(X)+\frac{1}{n}$. i.e. We need $H(X)$ bits per source symbol (for a large $n$).
+
+    \item Fixed length source sequences to variable length codewords.
+
+    Say,
+    $$ X \in \{ A,B,C,D\} \qquad A\to 0 ,\, B \to 1,\, C\to 10,\, D \to 11$$
+    In this case we are able to use compression, hence we shall demand zero probability of error here unlike the previous case.
+
+    But we have a problem, consider source generates $BA$ \& $C$, the codeword for both of these is $01$. This can be solved by using prefix-free code.
+%18/6
 \end{enumerate}
 
 
