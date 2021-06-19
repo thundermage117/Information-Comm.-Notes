@@ -1,5 +1,9 @@
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
 
 \newcommand*{\Comb}[2]{{}^{#1}C_{#2}}%
 
@@ -14,7 +18,7 @@
     \item Code: Set of all codewords.
 \end{itemize}
 
-\section{Significance of entropy and other terms}
+\section{Efficient coding of information}
 
 We will be dealing with fixed length source code.
 
@@ -101,9 +105,44 @@ We will be dealing with fixed length source code.
     In this case we are able to use compression, hence we shall demand zero probability of error here unlike the previous case.
 
     But we have a problem, consider source generates $BA$ \& $C$, the codeword for both of these is $01$. This can be solved by using prefix-free code.
+
 %18/6
+Prefix-free code: A code is called prefix-free or P.F. code if no codeword in $C$ is a prefix of another codeword in $C$. So the code defined above was not prefix-free code.
+
+Examples for P.F code:
+\begin{align}
+    &\{ 011,10,11,00\} \\
+        &\{ 10,11,01,00\} \\
+        &\{ 0,10,11,110\} \\
+        &\{ 10,110,1110,11110\}
+    \end{align}
+We know that the nodes of a binary tree without any children are called `leaves'. Hence, the codewords of a prefix-free code all correspond to the leaves of the tree.
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{binary_tree.png}
+    \caption{Binary tree of the prefix-free code of example (1)}
+\end{figure}
+
+Suppose $X \in \mathcal{X}, X \sim P_X$ \& $|supp(P_X)|= S$ ($X$ can take $S$ possible values).
+
+Let $l_i : i= 1\cdots n$, be the length of the binary codewords associated to the $i^{th}$ symbol in supp($P_X$).
+
+$$ \text{Expected length of the code } \overline{L}= \sum_{n} p_i l_i$$
+
+Let $X \in \{ A,B,C,D\} $ \& $P_X(A)= \frac{1}{4},\, P_X(B)= \frac{1}{4},\, P_X(C)= \frac{3}{8},\, P_X(D)= \frac{1}{8}$.
+\begin{itemize}
+    \item Example (2):
+    $$ \overline{C_2}= \sum_{i=1}^{4} p_i l_i=2$$
+    \item Example (4):
+    $$ \overline{C_4}= \sum_{i=1}^{4} p_i l_i=\frac{27}{8} \approx 3.8$$
+\end{itemize}
 \end{enumerate}
 
+The goal of fixed-variable length source coding is to minimize $\overline{L}$.
 
+The minimum possible $\overline{L}$ among all prefix-free code is denoted as $\overline{L}^{*}$.
+
+We can show that,
+$$ H(X)+1 \leq \overline{L}^{*} \leq H(X)$$
 
 \end{document}
