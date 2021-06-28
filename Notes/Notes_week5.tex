@@ -108,8 +108,43 @@ $$ C_{BSC} = 1- H_2(p)$$
 where $H_2(p)$ is the binary entropy function defined by,
 $$ H_2(x)= x \log_2 \frac{1}{x} + (1-x) \log_2 \frac{1}{1-x}$$
 
-Hence if $P_x$ is a uniform distribution, the channel capacity can be 1.
+Hence if $P_x$ is a uniform distribution, the channel capacity can be 1.\\
 
+We will now show the converse for the BSC(p) capacity. i.e. we will show that no matter what we do, we can't get a rate higher than $1- H_2 (p)$.
 
+Let $C$ be the code which has rate close to capcity.
+$$ R= \frac{ \log_2 |C|}{n} \Rightarrow |C| = 2^{nR}$$
+
+Suppose $\underbar{c} \in C $ is transmitted, then
+$$ C = (c_1, \cdots , c_n) \to \text{BSC(p)} \to (y_1, \cdots , y_n)$$
+
+There are $\sim np$ positions in $\underbar{c}$ which are flipped to get $\mathcal{Y}$. (as the channel is independently acting on each bit)
+
+We can expect any sequence in the set $S(\underbar{c})$ as the output sequence.
+$$ S(\underbar{c})= \{ \mathcal{Y} \in \{0,1 \}^n : d_H (\underbar{c}, \mathcal{Y})= np\}$$
+
+$d_H$ is the Hamming distance between $\mathcal{Y}$ \& $\underbar{c}$. i.e number of positions in $\underbar{c}$ which we have to flip.
+
+Now around every codeword we draw this `Hamming ball' of radius $np$.
+
+We want $S(\underbar{c1})$ and $S(\underbar{c2})$ to be close to empty to prevent many-one mapping.
+
+Because the code $C$ has small probability of error, this means that the balls around the codewords in C are non-intersecting.
+
+$$ \Rightarrow |C| \leq \frac{2^n}{|S(C)|}$$
+
+$|S(C)|$ is the number of vectors in any ball and the same for any $\underbar{c} \in C = {n \choose np}$.
+$$ \Rightarrow |C| \leq \frac{2^n}{{n \choose np}}$$
+$$ \log_2 |C| \leq n- \log_2 {n \choose np} \leq n - n H_2 (p)$$
+(as we have previously seen)
+
+$$ \Rightarrow R= \frac{\log_2 |C|}{n} \leq 1- H_2 (p)$$
+$$ \Rightarrow R \leq C_{BSC}$$
+
+We have studied the result of Shannon's noisy coding channel theorem for the particular case of BSC. But Shannon's achievability result wasn't constructive (i.e. doesn't identify a code which works but rather shows the existence of one such code).
+
+Such a class of channels is calles discrete memoryless channels (without feedback).
+
+It took around 50 years to come up with candidate constructions which have rate close to capacity and small probability of error. This process is called coding theory.
 
 \end{document}
