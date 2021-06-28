@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{center}
+\textbf{\huge{Week 5}}
+\end{center}
+\section{Some comments on engineering quantitites}
+
+\subsection{Achievability}
+
+There exists some scheme using which we can show that the length of compression, rate or any other quantity of interest happens to be equal to be $L$ or that value which is achievable.
+
+\subsection{Converse}
+No scheme exists which can improve upon some value. (can be upper or lower bound depending on situation)
+
+
+Eg: Suppose in a running race, the fastest speed a human can run is say $10$ m/s. Then
+\begin{itemize}
+    \item `Achievable': There exists some person who can run $10$ m/s.
+    \item `Converse': There exists no person who can run more than $10$ m/s.
+    \item `Matching Converse': No human can run at a speed $10+ \epsilon$, for any $\epsilon >0$.
+\end{itemize}
+
+\section{Channel Coding}
+Say we are inputting $x \in \mathcal{X}$, $(x_1,\cdots, x_n)$, in a channel and we are getting $y \in \mathcal{Y}$, $(y_1, \cdots, y_n)$, with $\mathcal{Y}$ as output alphabet.
+
+If multiple $x_i$ are mapping to a single $y$, it signifies a noisy channel as we would be unable to decode accurately.
+
+To make this channel one-one (and therefore ensure correct decoding), we omit some sequences (n-length vectors in $\mathcal{X}^n$) from the set of all transmittable sequences.
+
+This subset of transmittable sequences is called as the `channel code' (or simply code). Denoted generally by $\mathscr{C}$. Note that, $\mathscr{C} \subseteq \mathcal{X}^n$.
+
+Each vector in $\mathscr{C}$ is called a codeword. Number of bits required to represent $|\mathscr{C}|$ codewords
+$$ = \log_{2} | \mathscr{C} | \text{ bits}$$
+
+$$ \text{Rate of the code } \mathscr{C}= \frac{\log_2 | \mathscr{C}|}{n} \text{ bits per channel use (bpcu or b/cu)}$$
+
+Intuitively, higher the rate, more the chance of many-one kind of system and higher the chance of error.
+
+\subsection{Probabilistically noisy channel}
+
+Also called a random channel or random noise.
+
+For $X=x \in \mathcal{X}$, there will be a probability distribution on the output random variable $Y$. The coditional distribution on $Y$ given $X=x$,
+$$ P_{Y/X=x}= \{ P(Y=y/X=x):y \in \mathcal{Y}\}$$
+
+These distributions $P_{Y/X}(y/x)$ $\forall x$ completely characterize or describe the random channel.
+
+Now, we need to think about how to calculate $P(error)$. $X_i's$ are given as input to the random channel which are not independent. Then $(Y_1,\cdots, Y_n)$ is given out as output of the random channel, this is then sent into the decoder which then gives out $\hat{X}$, which is an estimate for X.
+
+When $\hat{X} \neq X$, it is called an error event.
+$$ P(\text{Decoding error})= P(\hat{X} \neq X)$$
+
+
+
+
+
+
+
+
+
+
+\end{document}
