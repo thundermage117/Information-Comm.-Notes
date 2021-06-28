@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{mathrsfs}
 \usepackage{amsmath}
+\usepackage{graphicx}
 
 \begin{document}
 \begin{center}
@@ -53,12 +54,61 @@ Now, we need to think about how to calculate $P(error)$. $X_i's$ are given as in
 When $\hat{X} \neq X$, it is called an error event.
 $$ P(\text{Decoding error})= P(\hat{X} \neq X)$$
 
+Eg: $\mathcal{X}= \{ 0,1 \}$, $\mathscr{C}= \{ 000,111\}$ instead of all 8 sequences.
+$P(\text{error})$ decreases but rate of code $= \frac{\log_2 |\mathscr{C}|}{n}= \frac{1}{3}$
 
+Intuitively, it seems like if we want to decrease $P(\text{error})$ we have to increase $n$ and we can expect the error to be close to 0 but this isn't the case.
 
+For any small $\epsilon > 0$, there exists a code $\mathscr{C}$ with $P(\text{error}) \leq \epsilon$ \& rate of the code $R(\mathscr{C})= \text{max}_{P_X} (I(X;Y))- f(\epsilon)$
 
+Note that:
+\begin{enumerate}
+    \item I(X;Y) depends on $P_{Y/X=x} \; \forall \; x \in \mathcal{X}$.
+    \item I(X;Y) depends on distribution of $P_X$ and $P_Y$.
+    \item $X$ isn't a natural source upon which we have no control but it is the output of some encoding which encodes the `raw source'.
 
+    So $P_X(x)$ is generally assumed to be controllable in the mathematical framework of information theory.
+\end{enumerate}
 
+The quantity $\text{max}_{P_X} (I(X;Y))$ is called the `Channel capacity', denoted by C.
 
+\section{Channel coding theorem}
+
+No matter what we do, we can't get a code with rate $> C$ (channel capacity) and expect a small probability of error.
+
+Note: To make the rate very close to $C$, we have to use a very high value of code length $n$.
+
+\subsection{Binary symmetric channel}
+$$ \mathcal{X}= \{ 0,1\}= \mathcal{Y}$$
+A binary symmetric channel with crossover probability p, denoted by BSC(p), is a channel with binary input and binary output and probability of error p . That is, if X  is the transmitted random variable and Y  the received variable, then the channel is characterized by the conditional probabilities:
+\begin{align*}
+    P(Y=0/X=0)&=1-p \\
+    P(Y=0/X=1)&=p \\
+    P(Y=1/X=0)&=p \\
+    P(Y=1/X=1)&=1-p
+\end{align*}
+
+\includegraphics[width=\textwidth]{BSC.png}
+
+We want to find channel capacity of this channel,
+
+$$ C= \text{max}_{P_X} (I(X;Y))$$
+
+\begin{align*}
+    I(X;Y) &= H(Y) -H(Y/X) \\
+    &= H(Y)- \sum_{x \in \{ 0, 1 \}} P_X(x) H(Y/X=x) \\
+    &= H(Y)- \sum_{x \in \{ 0, 1 \}} P_X(x) H_2(p) \\
+    &= H(Y) - H_2 (p)
+\end{align*}
+
+As we know $max(H(Y)) \leq Y$,
+
+$$ C_{BSC} = 1- H_2(p)$$
+
+where $H_2(p)$ is the binary entropy function defined by,
+$$ H_2(x)= x \log_2 \frac{1}{x} + (1-x) \log_2 \frac{1}{1-x}$$
+
+Hence if $P_x$ is a uniform distribution, the channel capacity can be 1.
 
 
 
