@@ -145,7 +145,78 @@ Now,
     &< H(X)+1
 \end{align*}
 
-But S-F code is not always an optimal length prefix-free code. 
+But S-F code is not always an optimal length prefix-free code.
+
+\subsection{Example for Shannon-Fano code}
+$$ X \in \mathcal{X}= \{ x_1,x_2,x_3,x_4 \}$$
+\begin{equation*}
+        P_X (x_i)=
+        \begin{cases}
+          1/4, & \text{if}\ i=1 \\
+          1/2, & \text{if}\ i=2 \\
+          1/9, & \text{if}\ i=3 \\
+          5/36, & \text{if}\ i=4
+        \end{cases}
+    \end{equation*}
+
+Lengths satisying the Kraft's inequality for the Shannon-Fano code
+$$ l_i= \ceil{\log_2 \frac{1}{P_X (x_i)}}= \begin{cases}
+  2, & \text{if}\ i=1 \\
+  1, & \text{if}\ i=2 \\
+  4, & \text{if}\ i=3 \\
+  3, & \text{if}\ i=4
+\end{cases} $$
+
+$$ \bar{L}= \sum_{i=1}^{4} p_i l_i = \frac{57}{36}$$
+
+Obtaining the Shannon-Fano code:
+\begin{itemize}
+    \item Arrange lengths in ascending order: $l_2 \leq l_1 \leq l_4 \leq l_3$. Hence we pick off a node at depth 2, then 1, 4 and at 3 and delete all the successors.
+
+    \item Now we can choose the codewords from the binary tree, say
+    $$ x_1 \to 01 \qquad x_2 \to 1 \qquad x_3 \to 0010 \qquad x_4 \to 000$$
+    Hence, the prefix-free Shannon-Fano code is $\{ 01,1,0010,000\} $.
+\end{itemize}
+
+\section{Huffman coding}
+We will show an optimal code construction that has smaller average length compared to the Shannon-Fano code.
+
+Let us see some intuitive lemma's about an optimal code for a random variable $X$:
+
+Assume that $X \in \mathcal{X}= \{ x_1, \cdots, x_k\}$.
+
+$P_X(x_i)= p_i, i=1, \cdots , k$, without loss in generality, let $p_1 \geq \cdots \geq p_k$.
+\begin{enumerate}
+    \item Consider that $l_1, \cdots, l_k$ are the lengths of the codewords associated to the messages $x_i, i=1,\cdots, k$ respectively in any optimal code for X.
+
+    Then,
+    \begin{equation}
+        l_1 \leq \cdots \leq l_k
+    \end{equation}
+
+    Proof: Suppose $\mathscr{C}$ is an optimal code in which $\exists $ some distinct $i,j \in \{1,\cdots, k \}$ such that $p_i > p_j$ but $l_i > l_j$. (Assumption of the contrary)
+
+    We shall show that there is another code $\mathscr{C}'$ which has smaller average length $L_{\mathscr{C'}}$ than $L_{\mathscr{C}}$.
+
+    Cosider the code $\mathscr{C}'$ in which the codewords for $x_i$ \& $x_j$ are swapped between those in $\mathscr{C}$.
+    $$ \underbar{c}_{\mathscr{C'}}(x_j)=\underbar{c}_{\mathscr{C}}(x_i) \qquad \underbar{c}_{\mathscr{C'}}(x_i)=\underbar{c}_{\mathscr{C}}(x_j)$$
+
+    Now in $\mathscr{C}$,
+
+    $$l_{i, \mathscr{C}} :=  \text{length of codeword of } x_i \text{ in }\mathscr{C}= l_j$$
+$$l_{i, \mathscr{C'}}= l_i$$
+
+So, $l_{i, \mathscr{C'}}$ is having the same codewords as $\mathscr{C}$ and hence is also prefix-free.
+$$ \bar{L}_\mathscr{C'}= \sum_{k= \{ 1, \cdots, k\} \setminus \{ i,j\}}  p_k l_k+ p_i l_i + p_j l_j$$
+$$ \bar{L}_\mathscr{C}= \sum_{k= \{ 1, \cdots, k\}} p_k l_k$$
+$$ \bar{L}_\mathscr{C'} - \bar{L}_\mathscr{C} = p_i(l_j -l_i)+ p_j(l_i -l_j) =(p_i-p_j)(l_j -l_i) $$
+
+We have $p_i > p_j$, but $l_i > l_j$,
+$$ \Rightarrow  \bar{L}_\mathscr{C'} - \bar{L}_\mathscr{C} < 0 \Rightarrow  \bar{L}_\mathscr{C'} < \bar{L}_\mathscr{C}$$
+$\Rightarrow$ $\mathscr{C}$ is not optimal, thus this a contradiction. $(4)$ has to happen for an optimal code.
+
+\item Consider the tree representation of a code which is optimal code. In such a tree, it should be true that either each node is a codeword or it has at least 2 successors which are codewords. i.e. There are no unused leaves in the tree of an optimal code.
+\end{enumerate}
 
 
 \end{document}

@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1625555234 "Notes_week6.tex" "Notes_week6.pdf" "Notes_week6" 1625555236
-  "Notes_week6.aux" 1625555236 652 94430da9db97ad1bed5ff14878ee31ab "pdflatex"
-  "Notes_week6.tex" 1625555232 6992 10564efc1441aeb2101200859b8cb72d ""
+["pdflatex"] 1625582599 "Notes_week6.tex" "Notes_week6.pdf" "Notes_week6" 1625582600
+  "Notes_week6.aux" 1625582600 876 cfc54e7e5b755198ac55b61b0b5fa318 "pdflatex"
+  "Notes_week6.tex" 1625582598 10419 434fc53d67aa6e9408beb4d986bfd303 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1622125359 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1622125719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1622125567 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -54,6 +54,6 @@
   "c:/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1622127488 2724559 9f91299e925066be684294a8e576ca59 ""
   "c:/texlive/2021/texmf.cnf" 1622127312 713 e69b156964470283e0530f5060668171 ""
   (generated)
-  "Notes_week6.pdf"
   "Notes_week6.aux"
   "Notes_week6.log"
+  "Notes_week6.pdf"
