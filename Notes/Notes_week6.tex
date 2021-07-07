@@ -2,6 +2,7 @@
 \usepackage{mathrsfs}
 \usepackage{amsmath}
 \usepackage{mathtools}
+\usepackage{graphicx}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
 
@@ -181,6 +182,8 @@ Obtaining the Shannon-Fano code:
 \section{Huffman coding}
 We will show an optimal code construction that has smaller average length compared to the Shannon-Fano code.
 
+\subsection{Lemma's}
+
 Let us see some intuitive lemma's about an optimal code for a random variable $X$:
 
 Assume that $X \in \mathcal{X}= \{ x_1, \cdots, x_k\}$.
@@ -216,7 +219,48 @@ $$ \Rightarrow  \bar{L}_\mathscr{C'} - \bar{L}_\mathscr{C} < 0 \Rightarrow  \bar
 $\Rightarrow$ $\mathscr{C}$ is not optimal, thus this a contradiction. $(4)$ has to happen for an optimal code.
 
 \item Consider the tree representation of a code which is optimal code. In such a tree, it should be true that either each node is a codeword or it has at least 2 successors which are codewords. i.e. There are no unused leaves in the tree of an optimal code.
+%3/7
+
+Proof: Let $\mathscr{C}$ be the optimal code. Let us consider the tree corresponding to this, suppose it has an unused leaf. Because the code is optimal, these unused leaves must be at maximum depth in the tree. Then, for at least one value $x_i$ of $\mathscr{C}$, we have the situation
+
+\includegraphics[width=\textwidth]{huffman.png}
+
+In either case, we can delete the last digit of the codeword for $x_i$ (without changing the other codewords) and still have a prefix-free code. But the new code has smaller $\bar{L}$ and thus the original code could not have been optimal.
+
+\item There is an optimal prefix-free code for random variable $X$ such that the codewords associated to the two smallest probability symbols are siblings (share the same parent). i.e. two least likely codewords differ only in their last digit.
+
+Proof: Let $\mathscr{C}$ be some optimal code for random variable. Suppose $\mathscr{C}$ already satifies the property specified above, then we are done.
+
+Suppose $\mathscr{C}$ doesn't satify the property, we know:
+
+$$ l_{k-1}\leq l_k \qquad as \qquad p_{k-1} \geq p_k$$
+
+\includegraphics[width=\textwidth]{lemma3.png}
+
+Note that $l_i = l_k$ and $i \neq k-1$.
+
+$$ \Rightarrow l_i \leq l_{k-1} \leq l_k = l_i  \qquad \text{from Lemma-1}$$
+
+$$ \Rightarrow l_i = l_{k-1}= l_k$$
+
+Interchange the codewords for the $i^{th}$ and $(k-1)^{th}$ symbols and get a new code $\mathscr{C'}$.
+$$ \Rightarrow \bar{L}_\mathscr{C} = \bar{L}_\mathscr{C'}$$
+
+Now $\mathscr{C'}$ satisfies the property in Lemma 3.
+
 \end{enumerate}
 
+\subsection{Huffman coding}
+
+Say we have $p_X$, assume that $p_1 \geq \cdots \geq p_k$. Unlike Shannon-Fano code, here we are building the tree in reverse. We pick $p_{k-1}$ and $p_k$ as they have the least 2 probabilities.
+
+These are assigned to siblings in the tree and now the parent of them has probability $p_{k-1}+ p_k$.
+
+Now we can form a new distribution using these $k-1$ probabilities (symbols) i.e. $p_1, \cdots, p_{k-2}, p_{k-1}+ p_k$. Now, if $\{ p_{k-2}, p_{k-1}+ p_k \}$ are the least 2 probabilities, a new node is assigned to $p_{k-2}$.
+We repeat the process until all codewords are assigned.
+
+\subsection{Example}
+
+\includegraphics[width=\textwidth]{huffmaneg.png}
 
 \end{document}
