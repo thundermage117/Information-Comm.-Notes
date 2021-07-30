@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\begin{document}
+\begin{center}
+\textbf{\huge{Week 9}}
+\end{center}
+
+\section{Lemma}
+If $\mathscr{C}$ is a linear code, then
+$$ d_{min}(\mathscr{C})= \text{min}_{\underbar{c} \neq 0}w_H (\underbar{c})$$
+where, Hamming weight, $w_H(\underbar{c})=$ number of non zero positions in $\underbar{c}$.
+\\ \\
+Proof:
+
+By definition,
+
+    \begin{align*}
+        d_{min}(\mathscr{C})&=\text{min} (d_H(\underbar{c}_1, \underbar{c}_2)) \qquad \underbar{c}_1, \underbar{c}_2 \in \mathscr{C} ; \underbar{c}_1 \neq \underbar{c}_2 \\
+        \text{min} (d_H(\underbar{c}_1, \underbar{c}_2))& = \text{min} (w_H(\underbar{c}_1 - \underbar{c}_2) \qquad \underbar{c}_1, \underbar{c}_2 \in \mathscr{C} ; \underbar{c}_1 \neq \underbar{c}_2 \\
+        &= \text{min}(w_H(\underbar{c})) \qquad\qquad    \underbar{c}\neq 0 ; \underbar{c} \in \mathscr{C}
+    \end{align*}
+    Hence proved.
+
+\section{Examples}
+We know that every subspace of a vector space has a basis, i.e a set of linearly independent vectors from the subspace which span the subspace.
+\\
+\begin{enumerate}
+    \item Suppose $\mathscr{C}= \mathbb{F}_2^n$,
+    \begin{itemize}
+        \item Then any set of n linearly independent vectors from $\mathbb{F}_2^n$ will be a basis of $\mathscr{C}$.
+        \item In particular we can choose the standard basis, $\underbar{c}_1= (1,0,\cdots,0),\underbar{c}_2= (0,1,0,\cdots,0),\cdots, \underbar{c}_n=(0,\cdots,0,1)$
+    \end{itemize}
+    \item Suppose $\mathscr{C}= \{ (0, \cdots,0), (1,\cdots,1)\}$
+    \begin{itemize}
+        \item As this code is closed under addition, this is a valid linear code.
+        \item The basis for $\mathscr{C}$ will be $\{ (1,\cdots,1)\}$.
+        \item This code encodes 1 bit.
+    \end{itemize}
+    \item Suppose $B= \{ g_1,\cdots, g_k \}$, $k<n$ are a set of linearly independent vectors in $\mathbb{F}_2^n$. What is linear code $\mathscr{C}$ for which B is a basis?
+    \begin{itemize}
+        \item Set of all linear combinations of vectors in B, i.e. $$ \mathscr{C}= \text{span}(B) = \left\{ \sum_{i=1}^{k} \alpha_i g_i: \alpha_i \in \mathbb{F}_2 \right\}$$
+        \item $ |\mathscr{C}|= 2^k$, k is called the dimension of the subspace.
+
+         Hence, $k= \log_2 |\mathscr{C}| $.
+         \item Rate of  the code $= k/n $.
+         \item This code encodes $k$ bits.
+         \item Encoding is a linear operator, hence implementation is simple. $$ ( \alpha_1 , \alpha_2, \cdots, \alpha_n ) \xrightarrow{\text{encoded}} \sum_{i=1}^{k} \alpha_i g_i$$
+         $$ ( \alpha_1 , \alpha_2, \cdots, \alpha_n ) \xrightarrow{\text{linear}} ( \alpha_1 , \alpha_2, \cdots, \alpha_n )_{1\times k} G_{k \times n}$$
+         where,
+         $ G_{k \times n}=
+\begin{pmatrix}
+  g_1 \\
+  g_2 \\
+  \vdots \\
+  g_k \\
+\end{pmatrix}$
+    \end{itemize}
+
+\end{enumerate}
+
+\subsection{Generator matrix}
+
+Pick any collection of $k$ linearly independent from $\mathbb{F}_2^n$ $\{ g_1,\cdots, g_k\}$.
+
+
+$ G_{k \times n}=
+\begin{pmatrix}
+g_1 \\
+g_2 \\
+\vdots \\
+g_k \\
+\end{pmatrix}$
+\\
+\\
+Rowspace(G) = span(rows of G) = k dimensional subspace of $\mathbb{F}_2^n$
+
+$$ d_{min}(\mathscr{C})= \text{min}_{\underbar{c} \neq 0}w_H (\underbar{c})$$
+
+Encoding is the operation of mapping $2^nR$ length messages to the n-length codewords in a unique manner. It is the mapping from k-length vectors over $\mathbb{F}_2$ to $\mathscr{C}$.
+
+For linear codes, we can do this encoding as a linear mapping.
+Encoding operation for linear codes requires polynomial in n, unlike non-linear codes require exponential complexity.
+
+\subsection{Example}
+
+\begin{itemize}
+    \item Repetition code (eg. 2):
+    $$ G=   [1,1,\cdots,1]_{1 \times n}$$
+    $$ \text{Rowspace}(G)= \{ (0,0,\cdots,0),(0,0,\cdots,0)\}$$
+    $$ d_{min}(\mathscr{C})= n \qquad dim(\mathscr{C})=1 \qquad R= \frac{k}{n}= \frac{1}{n}$$
+
+    How can we implement minimum distance decoding more efficiently?
+    $$ \hat{\underbar{c}}= argmin_{\underbar{c} \in \mathscr{C}} d_H(y,\underbar{c})$$
+    For n=5:
+    Suppose $y=(1\,1\,1\,0\,0)$, then minimum distance decoder output is $\hat{c}=(1\,1\,1\,1\,1)$.
+
+    $$ MDD(y)= \begin{cases}
+      \underbar{0}=(0,\cdots,0) & w_H(y)<\frac{n}{2} \\
+      \underbar{1}=(1,\cdots,1) & w_H(y) > \frac{n}{2}
+   \end{cases}$$
+   This is the majority decoding rule.
+\end{itemize}
+
+\section{Binary Hamming code}
+
+This is a class of codes, we take up a particular example, let:
+$$ n=2^r -1 \qquad k=2^r-1-r \qquad d=3 \quad \forall \quad r \geq 3$$
+$$ \text{if }r=3  \Rightarrow\qquad n=7,k=4,d=3$$
+
+$$ G_{4 \times 7}= \left[ I_4 : \begin{bmatrix}
+    1       & 0 & 1  \\
+    0       & 1 & 1  \\
+    1       & 1 & 0  \\
+    1       & 1 & 1
+\end{bmatrix}\right]$$
+(we are appending $I_4$ with 3 columns to the right)
+
+Note: The 4 rows of G are linearly independent vectors of $\mathbb{F}_2^7$. Rank(G) = number of linearly independent vectors in rows or columns = 4.
+
+$\mathscr{C}$=Rowspace(G) is a 4-dim linear code. Rate= 4/7.
+
+$|\mathscr{C}|= 2^k= 2^4=16$
+
+$d_{min}(\mathscr{C}) =3$
+
+
+
+
+
+\end{document}
