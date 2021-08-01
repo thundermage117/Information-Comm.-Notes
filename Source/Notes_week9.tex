@@ -51,8 +51,8 @@ We know that every subspace of a vector space has a basis, i.e a set of linearly
          Hence, $k= \log_2 |\mathscr{C}| $.
          \item Rate of  the code $= k/n $.
          \item This code encodes $k$ bits.
-         \item Encoding is a linear operator, hence implementation is simple. $$ ( \alpha_1 , \alpha_2, \cdots, \alpha_n ) \xrightarrow{\text{encoded}} \sum_{i=1}^{k} \alpha_i g_i$$
-         $$ ( \alpha_1 , \alpha_2, \cdots, \alpha_n ) \xrightarrow{\text{linear}} ( \alpha_1 , \alpha_2, \cdots, \alpha_n )_{1\times k} G_{k \times n}$$
+         \item Encoding is a linear operator, hence implementation is simple. $$ ( \alpha_1 , \alpha_2, \cdots, \alpha_k ) \xrightarrow{\text{encoded}} \sum_{i=1}^{k} \alpha_i g_i$$
+         $$ ( \alpha_1 , \alpha_2, \cdots, \alpha_k ) \xrightarrow{\text{linear}} ( \alpha_1 , \alpha_2, \cdots, \alpha_k )_{1\times k} G_{k \times n}$$
          where,
          $ G_{k \times n}=
 \begin{pmatrix}
@@ -93,7 +93,7 @@ Encoding operation for linear codes requires polynomial in n, unlike non-linear 
 \begin{itemize}
     \item Repetition code (eg. 2):
     $$ G=   [1,1,\cdots,1]_{1 \times n}$$
-    $$ \text{Rowspace}(G)= \{ (0,0,\cdots,0),(0,0,\cdots,0)\}$$
+    $$ \text{Rowspace}(G)= \{ (0,0,\cdots,0),(1,1,\cdots,1)\}$$
     $$ d_{min}(\mathscr{C})= n \qquad dim(\mathscr{C})=1 \qquad R= \frac{k}{n}= \frac{1}{n}$$
 
     How can we implement minimum distance decoding more efficiently?
